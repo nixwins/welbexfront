@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welbex</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+</head>
+<body>
+
+
+    <div class="container">
+
+        <div id="root" class="row col-sm-12">
+            <div id="sorting" class="col-sm-4"></div>
+            <div id="tasks" class="col-sm-8">
+            
+            </div>
+            <div id="pagination" class="row"></div>
+          
+        </div>
+ 
+    </div>
+ 
+   
+    <script src="app/app.js" type="module"></script>  
+
+    <script id="sortTemplate" type="text/template">
+
+        <select class="form-control form-control-lg" data-role="sort">
+            <option value="name">имя</option>
+            <option value="count">количество</option>
+            <option value="distance">дистанция</option>
+        </select>
+
+        <select class="form-control form-control-lg" data-role="sortType">
+            <option value="equal">равно</option>
+            <option value="contain">содержить</option>
+            <option value="more">больше</option>
+            <option value="less">меньше</option>
+        </select>
+        <div class="form-control">
+            <input type="text" data-role="queryInput" required>
+            
+        </div>
+        <div class="form-control">
+            <button class="btn btn-success" data-role="acceptBtn">Применить</button>
+        </div>
+         
+    </script>  
+
+    <script id="tasksTemplate" type="text/template"> 
+
+        <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">имя</th>
+                <th scope="col">количество</th>
+                <th scope="col">дистанция</th>
+                <th scope="col">дата</th>
+              </tr>
+            </thead>
+            <tbody>
+
+                {{#each tasks}}
+              <tr>
+                <td>  <div class="name">{{id}}</div></td>
+                <td>       <div class="name">{{name}}</div></td>
+                <td>       <div class="name">{{count}}</div></td>
+                <td> <div class="name">{{distance}}</div></td>
+                <td>    <div class="name">{{date}}</div></td>
+              </tr>
+              {{/each}}
+
+            </tbody>
+          </table>
+
+        </script>
+
+        <script id="paginationTemplate" type="text/template">
+            <nav aria-label="...">
+                <ul class="pagination">
+                    {{#times pageCount}}
+                 
+                        <li class="page-item"><a class="page-link" href="#page/{{this}}"> {{this}}</a></li>
+
+                    {{/times}}
+                  
+                </ul>
+              </nav>
+        </script>
+ 
+</body>
+</html>
